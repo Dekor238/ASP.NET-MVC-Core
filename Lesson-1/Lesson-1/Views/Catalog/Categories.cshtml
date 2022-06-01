@@ -1,0 +1,22 @@
+@model Catalog
+@{
+    ViewData["Title"] = "Список категорий";
+}
+
+    @foreach (var cat in Model.Categories)
+    {
+        <div>Id категории - @cat.Id ; Название категории - @cat.Name</div>
+    }
+
+<br/>
+<div>-----------------------------------------------</div>
+<form method="post">
+<table>
+    <tr><td align="right">Id :</td><td><input type="text" name="id" required ></td></tr>
+    <tr><td align="right">Название категории:</td><td><input type="text" name="name" ></td></tr>
+    <tr><td colspan="2" align="center"><input type="submit" name="submit" value="Создать" ></td></tr>
+</table>
+</form>
+
+
+

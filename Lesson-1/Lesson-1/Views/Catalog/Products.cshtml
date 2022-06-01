@@ -1,0 +1,30 @@
+@model Category
+
+@{
+    ViewData["Title"] = "Список продуктов в категории";
+}
+
+@foreach (var pro in Model.ProductsList)
+{
+    <div>id - @pro.Id, Название - @pro.Name, <img src="@pro.Img" width="150px" height="auto"/></div>
+}
+
+<div>--------------------------------------------------</div>
+<form method="get">
+    <table>
+    <tr><td>Категория:</td>
+    <td>
+    <select id="category" name="category">
+    <option value="@Model.Id">@Model.Name</option>
+    </select>
+    </td></tr>
+    </table>
+</form>
+<form method="post">
+    <table>
+        <tr><td>Id:</td><td><input type="text" name="id" required></td></tr>
+        <tr><td>Название продукта:</td><td><input type="text" name="name"></td></tr>
+        <tr><td>Ссылка на картинку продукта:</td><td><input type="text" name="img"></td></tr>
+        <tr><td colspan="2"><input type="submit" name="submit" value="Создать"></td></tr>
+    </table>
+</form>
