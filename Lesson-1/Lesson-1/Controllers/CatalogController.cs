@@ -24,6 +24,7 @@ public class CatalogController : Controller
     public IActionResult Categories(Category model)
     {
         _catalog.Categories.Add(model);
+        // ViewBag.Categories = _catalog;
         return View(_catalog);
     }
     
