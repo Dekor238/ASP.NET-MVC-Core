@@ -1,9 +1,9 @@
-@model Category
+@model List<Category>
 @{
     ViewData["Title"] = "Список категорий";
 }
 
-@if (Model.Categories.Count == 0)
+@if (Model.Count == 0)
 {
     <div>Нет категорий для отображения</div>
 }
@@ -11,7 +11,8 @@ else
 {
     <table>
         <tr><td align="left" width="150">Id категории</td><td align="left">Название категории</td></tr>
-        @foreach (var cat in Model.Categories)
+        @* @Html.DisplayNameFor(Model => Model.Name); *@
+        @foreach (var cat in Model)
         {
             <tr><td>@cat.Id</td><td>@cat.Name</td></tr>
         }
@@ -21,12 +22,18 @@ else
 <br/>
 <div>-----------------------------------------------</div>
 <form method="post">
-<table>
-    <tr><td align="left">Id :</td><td><input type="text" name="id" required ></td></tr>
-    <tr><td align="left">Название категории:</td><td><input type="text" name="name" ></td></tr>
-    <tr><td colspan="2" align="center"><input type="submit" name="submit" value="Создать" ></td></tr>
-</table>
+    <table>
+        <tr><td align="left">Id :</td><td><input type="text" name="id" required ></td></tr>
+        <tr><td align="left">Название категории:</td><td><input type="text" name="name" ></td></tr>
+        <tr><td height="10" colspan="2"></td></tr>
+        <tr><td colspan="2" align="center"><input type="submit" name="submit" value="Создать" ></td></tr>
+    </table>
 </form>
-
-
-
+<br/>
+<form method="post">
+    <table>
+        <tr><td align="left">Id :</td><td><input type="text" name="id" required ></td></tr>
+        <tr><td height="10" colspan="2"></td></tr>
+        <tr><td colspan="2" align="center"><input type="submit" name="delete" value="Удалить" ></td></tr>
+    </table>
+</form>

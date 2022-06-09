@@ -1,20 +1,18 @@
 using Lesson_1.Models;
-using Lesson_1.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lesson_1.Controllers;
 
 public class CatalogController : Controller
 {
-    private readonly CategoryRepository _categoryRepository;
     private static Catalog _catalog = new();
-    private static Category _category = new();
+    // private static Category _category = new();
     
     [HttpGet] // выводит весь список категорий при отображении страницы
-    // public IActionResult Categories()
-    // {
-    //     return View(_categoryRepository.GetAll());
-    // }
+    public IActionResult Categories()
+    {
+        return View(_catalog.GetAll());
+    }
     
     // [HttpGet]
     // public IActionResult Products()
@@ -25,8 +23,13 @@ public class CatalogController : Controller
     [HttpPost] // добавляем новые категории в каталог
     public IActionResult Categories(Category model)
     {
-        var result = _categoryRepository.Create(model);
-        return View(result);
+        return View(_catalog.Add(model));
+    }
+    
+    [HttpPost] // удаляем категории в каталог
+    public IActionResult Categories([FromForm] int id)
+    {
+        return View(_catalog.Delete(id));
     }
     
     // [HttpPost]
