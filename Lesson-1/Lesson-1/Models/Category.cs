@@ -17,7 +17,7 @@ public class Category : ILessons<Products>
         }
     }
     
-    public List<Products> GetAll()
+    public IReadOnlyList<Products> GetAll()
     {
         lock (_lock)
         {

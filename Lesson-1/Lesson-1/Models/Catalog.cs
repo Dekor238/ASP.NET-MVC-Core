@@ -14,7 +14,7 @@ public class Catalog : ILessons<Category>
         }
     }
     
-    public List<Category> GetAll()
+    public IReadOnlyList<Category> GetAll()
     {
         lock (_lock)
         {
