@@ -6,9 +6,7 @@ namespace Lesson_1.Controllers;
 public class CatalogController : Controller
 {
     private static Catalog _catalog = new();
-    // private static Category _category = new();
-    
-    [HttpGet] // выводит весь список категорий при отображении страницы
+
     public IActionResult Categories()
     {
         return View(_catalog.GetAll());

@@ -1,6 +1,6 @@
 namespace Lesson_1.Models;
 
-public class Catalog
+public class Catalog : ILessons<Category>
 {
     private List<Category> Categories { get; set; } = new();
     private readonly Object _lock = new();
@@ -10,7 +10,7 @@ public class Catalog
         lock (_lock)
         {
             if(model.Id!=0)
-            Categories.Add(model);
+                Categories.Add(model);
         }
     }
     
@@ -21,16 +21,16 @@ public class Catalog
             return Categories;
         }
     }
-
+    
     public void Delete(int id)
     {
         lock (_lock)
         {
             if (id!=0)
-            Categories.RemoveAll(c => c.Id == id);
+                Categories.RemoveAll(c => c.Id == id);
         }
     }
-
+    
     public void Edit(int id, string text)
     {
         lock (_lock)
