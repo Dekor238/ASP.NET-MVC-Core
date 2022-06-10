@@ -13,29 +13,22 @@ public class CatalogController : Controller
     {
         return View(_catalog.GetAll());
     }
-    
-    // [HttpGet]
-    // public IActionResult Products()
-    // {
-    //     return View(_category);
-    // }
-    
-    [HttpPost] // добавляем новые категории в каталог
-    public IActionResult Categories(Category model)
+
+    public IActionResult Add([FromForm] Category model)
     {
-        return View(_catalog.Add(model));
+        _catalog.Add(model);
+        return View("Add");
     }
-    
-    [HttpPost] // удаляем категории в каталог
-    public IActionResult Categories([FromForm] int id)
+
+    public IActionResult Delete([FromForm] int id2)
     {
-        return View(_catalog.Delete(id));
+        _catalog.Delete(id2);
+        return View("Delete");
     }
-    
-    // [HttpPost]
-    // public IActionResult Products(Products model)
-    // {
-    //    _category.ProductsList.Add(model);
-    //     return View(_category);
-    // }
+
+    public IActionResult Edit([FromForm] int id, string name)
+    {
+        _catalog.Edit(id,name);
+        return View("Edit");
+    }
 }

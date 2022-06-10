@@ -5,12 +5,12 @@ public class Catalog
     private List<Category> Categories { get; set; } = new();
     private readonly Object _lock = new();
     
-    public List<Category> Add(Category model)
+    public void Add(Category model)
     {
         lock (_lock)
         {
+            if(model.Id!=0)
             Categories.Add(model);
-            return Categories;
         }
     }
     
@@ -22,12 +22,24 @@ public class Catalog
         }
     }
 
-    public List<Category> Delete(int id)
+    public void Delete(int id)
     {
         lock (_lock)
         {
+            if (id!=0)
             Categories.RemoveAll(c => c.Id == id);
-            return Categories;
+        }
+    }
+
+    public void Edit(int id, string text)
+    {
+        lock (_lock)
+        {
+            if (id != 0)
+            {
+                Categories.RemoveAll(f => f.Id == id);
+                Categories.Add(new() {Id = id, Name = text});
+            }
         }
     }
     

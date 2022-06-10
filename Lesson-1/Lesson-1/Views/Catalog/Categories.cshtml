@@ -21,19 +21,19 @@ else
 
 <br/>
 <div>-----------------------------------------------</div>
-<form method="post">
-    <table>
-        <tr><td align="left">Id :</td><td><input type="text" name="id" required ></td></tr>
-        <tr><td align="left">Название категории:</td><td><input type="text" name="name" ></td></tr>
-        <tr><td height="10" colspan="2"></td></tr>
-        <tr><td colspan="2" align="center"><input type="submit" name="submit" value="Создать" ></td></tr>
-    </table>
-</form>
-<br/>
-<form method="post">
-    <table>
-        <tr><td align="left">Id :</td><td><input type="text" name="id" required ></td></tr>
-        <tr><td height="10" colspan="2"></td></tr>
-        <tr><td colspan="2" align="center"><input type="submit" name="delete" value="Удалить" ></td></tr>
-    </table>
-</form>
+
+<div class="container-fluid">
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="Add">Добавить</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="Edit">Изменить</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="Delete">Удалить</a>
+        </li>
+    </ul>
+</div>
+</div>
