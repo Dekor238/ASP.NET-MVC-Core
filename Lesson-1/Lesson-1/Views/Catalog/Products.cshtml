@@ -1,0 +1,35 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Category
+
+@{
+    ViewData["Title"] = "Список продуктов в категории";
+}
+
+@if (Model.ProductsList.Count == 0)
+{
+    <div>Нет продуктов для отображения</div>
+}
+else
+{
+    <table>
+        <tr><td align="left" width="150">Id продукта</td><td align="left" width="250">Название продукта</td><td>Фотография</td></tr>
+        @foreach (var pro in Model.ProductsList)
+        {
+            <tr><td>@pro.Id</td><td>@pro.Name</td><td><img src="@pro.Img" width="150px" height="auto"/></td></tr>
+        }
+    </table>
+}
+
+<div>--------------------------------------------------</div>
+
+@* @Html.DropDownListFor(m=>m.Name) *@
+
+<form method="post">
+    <table>
+        <tr><td>Id:</td><td><input type="text" name="id" required></td></tr>
+        <tr><td>Название продукта:</td><td><input type="text" name="name"></td></tr>
+        <tr><td>Ссылка на картинку:</td><td><input type="text" name="img"></td></tr>
+        <tr><td colspan="2"><input type="submit" name="submit" value="Создать"></td></tr>
+    </table>
+</form>
