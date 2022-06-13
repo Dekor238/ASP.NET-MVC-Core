@@ -1,0 +1,33 @@
+@model IReadOnlyList<Category>
+@{
+    ViewData["Title"] = "Список категорий";
+}
+
+@if (Model.Count == 0)
+{
+    <div>Нет категорий для отображения</div>
+}
+else
+{
+    <table>
+        <tr><td align="left" width="150">Id категории</td><td align="left">Название категории</td></tr>
+        @* @Html.DisplayNameFor(Model => Model.Name); *@
+        @foreach (var cat in Model)
+        {
+            <tr><td>@cat.Id</td><td>@cat.Name</td></tr>
+        }
+    </table>
+}
+
+<br/>
+<div>-----------------------------------------------</div>
+
+<div>
+    
+    <a asp-area="" asp-controller="Catalog" asp-action="Add">Добавить</a>
+    |
+    <a asp-area="" asp-controller="Catalog" asp-action="Edit">Изменить</a>
+    |
+    <a asp-area="" asp-controller="Catalog" asp-action="Delete">Удалить</a>
+
+</div>
