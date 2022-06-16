@@ -24,9 +24,9 @@ public class CatalogController : Controller
         return View("Delete");
     }
 
-    public IActionResult Edit([FromForm] int id, string name)
+    public IActionResult Edit([FromForm] Category model)
     {
-        _catalog.Edit(id,name);
+        _catalog.Edit(model);
         return View("Edit");
     }
 }

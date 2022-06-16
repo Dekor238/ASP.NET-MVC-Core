@@ -1,45 +1,47 @@
+using System.Collections.Concurrent;
+
 namespace Lesson_1.Models;
 
-public class Catalog : ILessons<Category>
-{
-    private List<Category> Categories { get; set; } = new();
-    private readonly Object _lock = new();
+public class Catalog 
+    //: ILessons<Category>
+{ 
+    private ConcurrentDictionary<int, Category> Categories { get; set; } = new();
     
     public void Add(Category model)
     {
-        lock (_lock)
+        if (model.Id!=0)
         {
-            if(model.Id!=0)
-                Categories.Add(model);
+            Categories.TryAdd(model.Id, model);
         }
     }
     
     public IReadOnlyList<Category> GetAll()
     {
-        lock (_lock)
+        List<Category> f = new();
+        if (true)
         {
-            return Categories;
+            foreach (var c in Categories)
+            {
+                f.Add(c.Value);
+            }
         }
+        return f;
     }
     
     public void Delete(int id)
     {
-        lock (_lock)
-        {
-            if (id!=0)
-                Categories.RemoveAll(c => c.Id == id);
-        }
+        Category f;
+        if (id!=0)
+         Categories.TryRemove(id, out f);
     }
     
-    public void Edit(int id, string text)
+    public void Edit(Category model)
     {
-        lock (_lock)
+        Category oldmodel;
+        if (model.Id != 0)
         {
-            if (id != 0)
-            {
-                Categories.RemoveAll(f => f.Id == id);
-                Categories.Add(new() {Id = id, Name = text});
-            }
+            Categories.TryGetValue(model.Id, out oldmodel);
+            Categories.TryUpdate(model.Id,  model, oldmodel);
         }
     }
     
