@@ -16,15 +16,9 @@ public class Catalog : ILessons<Category>
     
     public IReadOnlyList<Category> GetAll()
     {
-        List<Category> f = new();
-        if (true)
-        {
-            foreach (var c in Categories)
-            {
-                f.Add(c.Value);
-            }
-        }
-        return f;
+        // тут я все же поменял код после просмотра 4 вебинара... 
+        var categories = Categories.Values.ToList();
+        return categories;
     }
     
     public void Delete(int id)

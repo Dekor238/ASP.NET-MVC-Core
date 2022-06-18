@@ -18,15 +18,9 @@ public class Category : ILessons<Products>
     
     public IReadOnlyList<Products> GetAll()
     {
-        List<Products> f = new();
-        if (true)
-        {
-            foreach (var c in Products)
-            {
-                f.Add(c.Value);
-            }
-        }
-        return f;
+        // тут я все же поменял код после просмотра 4 вебинара... 
+        var product = Products.Values.ToList();
+        return product;
     }
     
     public void Delete(int id)
