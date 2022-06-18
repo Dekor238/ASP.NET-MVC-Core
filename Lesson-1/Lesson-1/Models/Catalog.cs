@@ -2,8 +2,7 @@ using System.Collections.Concurrent;
 
 namespace Lesson_1.Models;
 
-public class Catalog 
-    //: ILessons<Category>
+public class Catalog : ILessons<Category>
 { 
     private ConcurrentDictionary<int, Category> Categories { get; set; } = new();
     

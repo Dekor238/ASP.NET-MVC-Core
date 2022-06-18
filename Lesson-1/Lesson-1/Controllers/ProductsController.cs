@@ -26,9 +26,9 @@ public class ProductsController : Controller
         return View("Delete");
     }
 
-    public IActionResult EditP([FromForm] int id, string name)
+    public IActionResult EditP([FromForm] Products model)
     {
-        _category.Edit(id,name);
+        _category.Edit(model);
         return View("Edit");
     }
 }
