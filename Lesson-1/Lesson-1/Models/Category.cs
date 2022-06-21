@@ -1,42 +1,12 @@
 using System.Collections.Concurrent;
+using Lesson_1.DAL.Interfaces;
 
 namespace Lesson_1.Models;
 
-public class Category : ILessons<Products>
+public class Category
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    private ConcurrentDictionary<int, Products> Products { get; set; } = new();
+    internal ConcurrentDictionary<int, Products> Products { get; set; } = new();
     
-    public void Add(Products model)
-    {
-        if (model.Id!=0)
-        {
-            Products.TryAdd(model.Id, model);
-        }
-    }
-    
-    public IReadOnlyList<Products> GetAll()
-    {
-        // тут я все же поменял код после просмотра 4 вебинара... 
-        var product = Products.Values.ToList();
-        return product;
-    }
-    
-    public void Delete(int id)
-    {
-        Products f;
-        if (id!=0)
-            Products.TryRemove(id, out f);
-    }
-    
-    public void Edit(Products model)
-    {
-        Products oldmodel;
-        if (model.Id != 0)
-        {
-            Products.TryGetValue(model.Id, out oldmodel);
-            Products.TryUpdate(model.Id,  model, oldmodel);
-        }
-    }
 }

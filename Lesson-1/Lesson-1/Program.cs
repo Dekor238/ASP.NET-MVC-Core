@@ -1,7 +1,19 @@
+using Lesson_1.DAL.Interfaces;
+using Lesson_1.DAL.Repository;
+using Lesson_1.Emails;
+using Lesson_1.Models;
+using Lesson_1.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// builder.Services.AddSingleton<ICategory, CategoryRepository>();
+// builder.Services.AddSingleton<IProduct<Products>, ProductsRepository>();
+//
+// builder.Services.AddScoped<IProductAddEmail<Products>, ProductAddEmail>();
+// builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 
