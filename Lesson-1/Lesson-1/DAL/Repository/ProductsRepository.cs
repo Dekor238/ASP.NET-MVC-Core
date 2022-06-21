@@ -5,9 +5,9 @@ namespace Lesson_1.DAL.Repository;
 
 public class ProductsRepository : IProduct
 {
-    private readonly Category _category;
+    private readonly ICategory _category;
 
-    public ProductsRepository(Category category)
+    public ProductsRepository(ICategory category)
     {
         _category = category;
     }

@@ -9,11 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// builder.Services.AddSingleton<ICategory, CategoryRepository>();
-// builder.Services.AddSingleton<IProduct<Products>, ProductsRepository>();
-//
-// builder.Services.AddScoped<IProductAddEmail<Products>, ProductAddEmail>();
-// builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddSingleton<ICatalog, Catalog>();
+builder.Services.AddSingleton<ICategory, CategoryRepository>();
+builder.Services.AddSingleton<IProduct, ProductsRepository>();
+builder.Services.AddScoped<IProductAddEmail, ProductAddEmail>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 

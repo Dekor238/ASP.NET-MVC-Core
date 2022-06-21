@@ -4,7 +4,7 @@ using Lesson_1.Models;
 
 namespace Lesson_1.Services;
 
-public class ProductAddEmail : IProductAddEmail<Products>
+public class ProductAddEmail : IProductAddEmail
 {
     private readonly IProduct _product;
     private readonly IEmailService _emailService;
@@ -19,8 +19,9 @@ public class ProductAddEmail : IProductAddEmail<Products>
     {
         if (product.Id != 0)
         {
+            var to = "bla-bla@yandex.ru";
             _product.Add(product);
-            _emailService.Send("dekor238@gmail.com", 
+            _emailService.Send(to, 
                 "New Product add to Catalog", 
                 $"New Product add to Catalog <br> {product}",
                 "asp2022gb@rodion-m.ru");

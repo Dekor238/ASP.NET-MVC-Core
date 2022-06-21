@@ -7,6 +7,6 @@ public class Category
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    internal ConcurrentDictionary<int, Products> Products { get; set; } = new();
+    //public ConcurrentDictionary<int, Products> Products { get; set; } = new();
     
 }

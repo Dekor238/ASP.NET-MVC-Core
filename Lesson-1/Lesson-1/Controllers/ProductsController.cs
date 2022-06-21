@@ -1,3 +1,4 @@
+using Lesson_1.DAL.Interfaces;
 using Lesson_1.DAL.Repository;
 using Lesson_1.Models;
 using Lesson_1.Services;
@@ -7,12 +8,12 @@ namespace Lesson_1.Controllers;
 
 public class ProductsController : Controller
 {
-    private readonly ProductsRepository _productsRepository;
-    private readonly IProductAddEmail<Products> _product;
+    private readonly IProduct _productsRepository;
+    private readonly IProductAddEmail _product;
 
     // GET
     // Products
-    public ProductsController(IProductAddEmail<Products> product, ProductsRepository productsRepository)
+    public ProductsController(IProductAddEmail product, IProduct productsRepository)
     {
         _product = product;
         _productsRepository = productsRepository;

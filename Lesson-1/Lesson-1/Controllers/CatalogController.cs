@@ -1,3 +1,4 @@
+using Lesson_1.DAL.Interfaces;
 using Lesson_1.DAL.Repository;
 using Lesson_1.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -6,9 +7,9 @@ namespace Lesson_1.Controllers;
 
 public class CatalogController : Controller
 {
-    private readonly CategoryRepository _category;
+    private readonly ICategory _category;
 
-    public CatalogController(CategoryRepository category)
+    public CatalogController(ICategory category)
     {
         _category = category;
     }

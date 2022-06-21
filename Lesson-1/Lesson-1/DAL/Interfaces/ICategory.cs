@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Lesson_1.Models;
 
 namespace Lesson_1.DAL.Interfaces;
@@ -8,4 +9,6 @@ public interface ICategory
     public IReadOnlyList<Category> GetAll();
     public void Delete(int id);
     public void Edit(Category model);
+    
+    public ConcurrentDictionary<int, Products> Products { get; set; }
 }

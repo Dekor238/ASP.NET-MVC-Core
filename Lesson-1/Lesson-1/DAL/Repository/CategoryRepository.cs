@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Lesson_1.DAL.Interfaces;
 using Lesson_1.Models;
 
@@ -5,9 +6,9 @@ namespace Lesson_1.DAL.Repository;
 
 public class CategoryRepository : ICategory
 {
-    private readonly Catalog _catalog;
+    private readonly ICatalog _catalog;
 
-    public CategoryRepository(Catalog catalog)
+    public CategoryRepository(ICatalog catalog)
     {
         _catalog = catalog;
     }
@@ -22,7 +23,7 @@ public class CategoryRepository : ICategory
     
     public IReadOnlyList<Category> GetAll()
     {
-        var categories = _catalog.Categories.Values.ToList();
+        IReadOnlyList<Category> categories = _catalog.Categories.Values.ToList();
         return categories;
     }
     
@@ -42,4 +43,6 @@ public class CategoryRepository : ICategory
             _catalog.Categories.TryUpdate(model.Id,  model, oldmodel);
         }
     }
+
+    public ConcurrentDictionary<int, Products> Products { get; set; } = new();
 }
