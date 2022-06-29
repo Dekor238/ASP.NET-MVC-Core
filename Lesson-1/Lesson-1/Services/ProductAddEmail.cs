@@ -19,12 +19,10 @@ public class ProductAddEmail : IProductAddEmail
     {
         if (product.Id != 0)
         {
-            var to = "bla-bla@yandex.ru";
             _product.Add(product);
-            _emailService.Send(to, 
-                "New Product add to Catalog", 
-                $"New Product add to Catalog <br> {product}",
-                "asp2022gb@rodion-m.ru");
+            _emailService.Send("New Product add to Catalog", 
+                $"New Product add to Catalog <br> " +
+                $"{product.Id} + {product.Name} + {product.Img}");
         }
     }
 }
