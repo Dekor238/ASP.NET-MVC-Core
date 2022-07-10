@@ -27,7 +27,7 @@ try
     builder.Services.AddScoped<IProductAddEmail, ProductAddEmail>();
 
     // SMTP json file config
-    builder.Services.Configure<SmtpConfiguration>(builder.Configuration.GetSection("SmtpConfigutaions"));
+    builder.Services.Configure<SmtpConfiguration>(builder.Configuration.GetSection("SmtpConfigurations"));
     builder.Services.AddScoped<IEmailService, EmailService>();
 
     //Serilog

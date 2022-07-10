@@ -11,12 +11,12 @@ namespace Lesson_1.Emails;
 public class EmailService : IEmailService
 {
     private readonly SmtpConfiguration _smtpConfiguration;
-    private readonly IConfiguration _configuration;
+    //private readonly IConfiguration _configuration;
     private readonly ILogger<EmailService> _logger;
     
-    public EmailService(IOptionsSnapshot<SmtpConfiguration> options, IConfiguration configuration, ILogger<EmailService> logger)
+    public EmailService(IOptionsSnapshot<SmtpConfiguration> options, ILogger<EmailService> logger)
     {
-        _configuration = configuration;
+        //_configuration = configuration;
         _logger = logger;
         _smtpConfiguration = options.Value;
     }
@@ -26,14 +26,14 @@ public class EmailService : IEmailService
         try
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(_configuration["SmtpConfiguration:SmtpUser"]));
+            email.From.Add(MailboxAddress.Parse(_smtpConfiguration.SmtpUser));
             email.To.Add(MailboxAddress.Parse(_smtpConfiguration.SmtpToAddress));
             email.Subject = subject;
             email.Body = new TextPart(TextFormat.Html) { Text = text };
         
             using var smtp = new SmtpClient();
             smtp.Connect(_smtpConfiguration.SmtpHost, _smtpConfiguration.SmtpPort, SecureSocketOptions.None);
-            smtp.Authenticate(_configuration["SmtpConfiguration:SmtpUser"], _configuration["SmtpConfiguration:SmtpPass"]);
+            smtp.Authenticate(_smtpConfiguration.SmtpUser, _smtpConfiguration.SmtpPass);
             smtp.Send(email);
             smtp.Disconnect(true);
         }
