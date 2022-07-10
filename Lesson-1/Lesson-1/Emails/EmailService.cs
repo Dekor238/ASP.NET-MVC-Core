@@ -31,7 +31,7 @@ public class EmailService : IEmailService
         
             using var smtp = new SmtpClient();
             await smtp.ConnectAsync(_smtpConfiguration.SmtpHost, _smtpConfiguration.SmtpPort, SecureSocketOptions.None);
-            await smtp.AuthenticateAsync(_smtpConfiguration.SmtpUser, _smtpConfiguration.SmtpPass);
+            smtp.Authenticate(_smtpConfiguration.SmtpUser, _smtpConfiguration.SmtpPass);
             await smtp.SendAsync(email);
             await smtp.DisconnectAsync(true);
         }
