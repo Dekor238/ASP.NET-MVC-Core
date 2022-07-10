@@ -6,6 +6,6 @@ namespace Lesson_1.Emails;
 
 public interface IEmailService
 {
-    public void Send(string subject, string text); // new from IOptionsSnapshot
+    public Task Send(string subject, string text); // new from IOptionsSnapshot
 
 }

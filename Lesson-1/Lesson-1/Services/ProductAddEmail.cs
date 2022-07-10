@@ -8,11 +8,13 @@ public class ProductAddEmail : IProductAddEmail
 {
     private readonly IProduct _product;
     private readonly IEmailService _emailService;
+    private readonly ILogger<ProductAddEmail> _logger;
 
-    public ProductAddEmail(IProduct product, IEmailService emailService)
+    public ProductAddEmail(IProduct product, IEmailService emailService, ILogger<ProductAddEmail> logger)
     {
         _product = product;
         _emailService = emailService;
+        _logger = logger;
     }
 
     public void Add(Products product)
@@ -20,9 +22,18 @@ public class ProductAddEmail : IProductAddEmail
         if (product.Id != 0)
         {
             _product.Add(product);
-            _emailService.Send("New Product add to Catalog", 
-                $"New Product add to Catalog <br> " +
-                $"{product.Id} + {product.Name} + {product.Img}");
+            try
+            {
+                _emailService.Send("New Product add to Catalog", 
+                    $"New Product add to Catalog <br> " +
+                    $"{product.Id} + {product.Name} + {product.Img}");
+                _logger.LogInformation("Email send successfuly!");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e,"Email do not send");
+            }
+            
         }
     }
 }
