@@ -7,6 +7,7 @@ using Lesson_1.Models;
 using Lesson_1.Services;
 using Serilog;
 
+// For Lesson-7
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
